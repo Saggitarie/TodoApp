@@ -39,6 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: "application/json", limit: "50mb" }));
 
 app.use("/api", apiRouter);

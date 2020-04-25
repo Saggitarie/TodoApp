@@ -20,7 +20,15 @@
 </head>
 
 <body>
-
+  <form action="/api/users/" id="signup" method="post">
+    <input type="text" id="user_name" name="user_name" />
+    <input type="text" id="first_name" name="first_name" />
+    <input type="text" id="last_name" name="last_name" />
+    <input type="text" id="password" name="password" />
+    <input type="text" id="email" name="email" />
+    <input type="submit" id="submit_new_user" name="submit_new_user" />
+  </form>
+  <script src="../index.js"></script>
 </body>
 
 </html>

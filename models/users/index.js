@@ -3,6 +3,10 @@ const moment = require("moment");
 const User = function (dbUser) {
   this.id = dbUser.id;
   this.username = dbUser.username;
+  this.firstName = dbUser.first_name;
+  this.lastName = dbUser.last_name;
+  this.password = dbUser.password;
+  this.email = dbUser.email;
   this.createdAt = new Date(dbUser.created_at);
 };
 
@@ -13,6 +17,10 @@ User.prototype.serialize = function () {
   return {
     id: this.id,
     username: this.username,
+    firstName: this.first_name,
+    lastName: this.last_name,
+    password: this.password,
+    email: this.email,
     createdAt: moment(this.createdAt).format("hh:mm:ss"),
   };
 };

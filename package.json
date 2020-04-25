@@ -7,8 +7,9 @@
     "test": "node tests/initialize.js && mocha tests/test.js && yarn lint",
     "lint": "eslint --fix .",
     "start": "node index.js",
-    "migrate": "knex migrate:latest --knexfile models/knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile models/knexfile.js ",
+    "dev": "nodemon ./index.js",
+    "migrate": "npx knex migrate:latest --knexfile models/knexfile.js",
+    "rollback": "npx knex migrate:rollback --knexfile models/knexfile.js ",
     "precommit": "pretty-quick --staged"
   },
   "repository": "https://github.com/Saggitarie/eCalApp.git",
@@ -31,6 +32,7 @@
     "husky": "^4.2.5",
     "mocha": "^7.1.1",
     "node-sass": "^4.14.0",
+    "nodemon": "^2.0.3",
     "prettier": "^2.0.5"
   }
 }
