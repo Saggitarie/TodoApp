@@ -24,7 +24,7 @@ describe("users", () => {
     let params = {};
 
     it("should be able to get user info by id", () => {
-      models.users.list(94).then((resp) => console.log(resp));
+      models.users.list(94).then((resp) => console.log("respppppppp", resp));
     });
 
     context("when some params are missing", () => {
