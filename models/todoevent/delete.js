@@ -1,4 +1,4 @@
-module.exports = (knex, Event) => {
+module.exports = (knex, Todoevent) => {
   return (id) => {
     console.log("paramsssDeleteeeee", id);
     return knex("events")

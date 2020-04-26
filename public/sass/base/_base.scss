@@ -1,0 +1,55 @@
+/********
+ * Partial class always starts with an underscore
+ */
+
+/*
+    Universal setting
+*/
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/*
+
+    Power of Inheritance (all these settings are inherited by all child elements.)
+    It is a best practice to include font-family you want to apply inside the body element.
+*/
+html {
+  //This defines what 1 rem is in this project.
+  font-size: 62.5%; // 1 rem = 10px; 10px/16px = 62.5%
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1 rem = 12, 12/16 = 75%
+  }
+
+  @include respond(tab-land) {
+    // width < 1200px?
+    font-size: 56.25%; //1rem = 9px, 9/16 = 56.25%
+  }
+  @include respond(tab-port) {
+    // width < 900px?
+    font-size: 50%; //1 rem = 8px, 8/16= 50%
+  }
+  @include respond(phone) {
+    font-size: 30%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

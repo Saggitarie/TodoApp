@@ -37,6 +37,10 @@ module.exports = (models) => {
     return models.events.delete(req.body.id);
   };
 
+  const updateEvent = (req, res) => {
+    console.log("updateEvent req", req.body);
+  }
+
   const listEvents = (req, res) =>
     models.users
       .list()

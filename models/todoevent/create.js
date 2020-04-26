@@ -1,7 +1,7 @@
 const validateEventTitle = (uName) =>
   typeof uName === "string" && uName.replace(" ", "").length >= 0;
 
-module.exports = (knex, User) => {
+module.exports = (knex, Todoevent) => {
   return (params) => {
     console.log("paramssssss >>>>>>", params.begin_time);
 
@@ -23,9 +23,8 @@ module.exports = (knex, User) => {
       .then(() => {
         return knex("events").where({ title: params.title }).select();
       })
-      .then((users) => {
-        console.log("users", users);
-        return new User(users.pop());
+      .then((events) => {
+        return new Todoevent(events.pop());
       }) // create a user model out of the plain database response
       .catch((err) => {
         // sanitize known errors

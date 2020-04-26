@@ -80,7 +80,8 @@ describe("users", () => {
 
   describe.only("#event", () => {
     let params = {};
-    let id = 4;
+    let updateParams = {};
+    const id = 4;
     before(() => {
       params = {
         title: "Eat Dinner",
@@ -90,8 +91,15 @@ describe("users", () => {
         end_time: "19:30",
         location: "home",
         description: "Going to eat pizza today!!!",
-        user_event_id: 83,
+        user_event_id: 93,
       };
+
+      updateParams = {
+        id: 6,
+        title: "Join Nomikai on Zoom",
+        begin_time: "18:30",
+        end_time: "21:30",
+      }
     });
 
     it("should be able to add new events", () => {
@@ -107,8 +115,20 @@ describe("users", () => {
     });
 
     it("should be able to delete events with a corresponding id", () => {
-      models.events.delete(id).then(() => {
-        console.log("Deletetion completed");
+      models.events
+        .delete(id)
+        .then(() => {
+          return knex("events").where({ id }).select();
+        })
+        .catch((err) => console.log(err));
+    });
+
+    it("should be able to update event with a corresponding id", () => {
+      models.events.update(updateParams).then((event) => {
+        // expect(event).to.not.include({ id: 6 });
+        expect(event).to.not.include({ title: params.title });
+        expect(event).to.not.include({ begin_time: params.begin_time });
+        expect(event).to.not.include({ end_time: params.end_time });
       });
     });
   });
