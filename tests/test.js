@@ -77,4 +77,8 @@ describe("users", () => {
       });
     });
   });
+
+  describe("#event", () => {
+
+  })
 });
