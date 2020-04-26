@@ -22,6 +22,11 @@ describe("users", () => {
 
   describe("#create", () => {
     let params = {};
+
+    it("should be able to get user info by id", () => {
+      models.users.list(94).then((resp) => console.log(resp));
+    });
+
     context("when some params are missing", () => {
       before(() => {
         params = {
@@ -129,6 +134,12 @@ describe("users", () => {
         expect(event).to.not.include({ title: params.title });
         expect(event).to.not.include({ begin_time: params.begin_time });
         expect(event).to.not.include({ end_time: params.end_time });
+      });
+    });
+
+    it("should be able to retrieve all events of that user", () => {
+      models.events.list(93).then((resp) => {
+        console.log(resp);
       });
     });
   });

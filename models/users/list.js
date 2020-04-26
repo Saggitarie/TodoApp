@@ -1,12 +1,18 @@
 module.exports = (knex, User) => {
-  return async () => {
-    const result = [];
-    const allUsers = await knex.select().from("users");
+  return async (id) => {
+    console.log("id is,,,,", id);
+    const targetUser = await knex
+      .where({ id })
+      .select()
+      .from("users")
+      .then((user) => {
+        if (user.length) return new User(user.pop());
 
-    let newUser = new User(allUsers[0]);
-    let newUser2 = new User(allUsers[1]);
-    result.push(newUser);
-    result.push(newUser2);
-    return result;
+        throw new Error(`Error finding user ${user}`);
+      });
+
+    console.log("targetUser", targetUser);
+
+    return targetUser;
   }; // fix me!
 };

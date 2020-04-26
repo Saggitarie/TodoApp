@@ -1,6 +1,6 @@
 function Todoevent(dbEvent) {
   console.log("dbEventttttt>>>>>>>", dbEvent[0]);
-  // this.id = dbEvent[0].id;
+  this.id = dbEvent[0].id;
   this.title = dbEvent[0].title;
   this.startDate = dbEvent[0].start_date;
   this.endDate = dbEvent[0].end_date;
@@ -33,5 +33,6 @@ module.exports = (knex) => {
     create: require("./create")(knex, Todoevent),
     delete: require("./delete")(knex, Todoevent),
     update: require("./update")(knex, Todoevent),
+    list: require("./list")(knex, Todoevent),
   };
 };

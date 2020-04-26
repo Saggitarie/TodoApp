@@ -5,9 +5,6 @@ module.exports = (models) => {
    * Controller Logic
    */
   const createEvent = (req, res) => {
-    console.log("About to add event");
-    console.log(req.body.user_name);
-
     return models.events
       .create({
         user_name: req.body.user_name,
@@ -26,20 +23,24 @@ module.exports = (models) => {
             .get({ username: req.body.username })
             .then((user) => res.status(200).json(user.serialize()));
         }
-
         return res.status(400).send(err.message);
       });
   };
 
   const deleteEvent = (req, res) => {
-    console.log("req.body.id", req.body.id);
-    console.log("req.params.id", req.params.id);
     return models.events.delete(req.body.id);
   };
 
   const updateEvent = (req, res) => {
-    console.log("updateEvent req", req.body);
-  }
+    // return models.events.update()
+  };
+
+  const listEventsInOrder = (req, res) =>
+    models.events
+      .list()
+      .then((users) => users.map((user) => user.serialize()))
+      .then((users) => res.status(200).json(users))
+      .catch((err) => res.status(400).send(err.message));
 
   const listEvents = (req, res) =>
     models.users
