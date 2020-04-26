@@ -28,12 +28,14 @@ module.exports = (models) => {
       });
   };
 
-  const listUsers = (req, res) =>
-    models.users
-      .list()
-      .then((users) => users.map((user) => user.serialize()))
+  const listUsers = (req, res) => {
+    console.log("res.paramsssss", req.params.user_name);
+    return models.users
+      .list(req.params.user_name)
       .then((users) => res.status(200).json(users))
       .catch((err) => res.status(400).send(err.message));
+  };
+
 
   /**
    * Routes
@@ -41,6 +43,7 @@ module.exports = (models) => {
   const router = express.Router();
   router.post("/", createUser);
   router.get("/", listUsers);
+  router.get("/:user_name", listUsers);
 
   return router;
 };

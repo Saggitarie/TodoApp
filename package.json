@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch:sass": "node-sass public/sass/main.scss public/css/style.css -w",
-    "compile:sass": "node-sass public/sass/main.scss public/css/style.comp.css",
+    "compile:sass": "node-sass public/sass/main.scss public/css/style.css",
     "test": "node tests/initialize.js && mocha tests/test.js && yarn lint",
     "lint": "eslint --fix .",
     "start": "node index.js",

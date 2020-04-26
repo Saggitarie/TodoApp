@@ -1,18 +1,18 @@
 module.exports = (knex, User) => {
-  return async (id) => {
-    console.log("id is,,,,", id);
-    const targetUser = await knex
-      .where({ id })
+  return async (name) => {
+    console.log("name is,,,,", name);
+    // eslint-disable-next-line no-return-await
+    return await knex
+      .where({ user_name: name })
       .select()
       .from("users")
       .then((user) => {
-        if (user.length) return new User(user.pop());
-
-        throw new Error(`Error finding user ${user}`);
+        console.log("userrrrr", user);
+        return new User(user.pop());
       });
 
-    console.log("targetUser", targetUser);
+    // console.log("targetUser", targetUser);
 
-    return targetUser;
+    // return targetUser;
   }; // fix me!
 };

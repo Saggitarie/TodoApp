@@ -42,20 +42,21 @@ module.exports = (models) => {
       .then((users) => res.status(200).json(users))
       .catch((err) => res.status(400).send(err.message));
 
-  const listEvents = (req, res) =>
-    models.users
-      .list()
-      .then((users) => users.map((user) => user.serialize()))
-      .then((users) => res.status(200).json(users))
-      .catch((err) => res.status(400).send(err.message));
+  // const listEvents = (req, res) =>
+  //   models.users
+  //     .list()
+  //     .then((users) => users.map((user) => user.serialize()))
+  //     .then((users) => res.status(200).json(users))
+  //     .catch((err) => res.status(400).send(err.message));
 
   /**
    * Routes
    */
   const router = express.Router();
   router.post("/", createEvent);
-  router.get("/", listEvents);
+  router.get("/", listEventsInOrder);
   router.delete("/:id", deleteEvent);
+  router.patch("/:id", updateEvent);
 
   return router;
 };

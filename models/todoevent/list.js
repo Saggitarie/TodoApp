@@ -6,6 +6,8 @@ module.exports = (knex, Todoevent) => {
       .select()
       .from("events");
 
-    console.log(allUsers);
+    return allUsers;
+
+    // console.log(allUsers);
   }; // fix me!
 };
