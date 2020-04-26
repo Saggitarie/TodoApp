@@ -80,6 +80,7 @@ describe("users", () => {
 
   describe.only("#event", () => {
     let params = {};
+    let id = 4;
     before(() => {
       params = {
         title: "Eat Dinner",
@@ -102,7 +103,13 @@ describe("users", () => {
         expect(event).to.include({ end_time: params.end_time });
         expect(event).to.include({ location: params.location });
         expect(event).to.include({ description: params.description });
-      })
+      });
+    });
+
+    it("should be able to delete events with a corresponding id", () => {
+      models.events.delete(id).then(() => {
+        console.log("Deletetion completed");
+      });
     });
   });
 });

@@ -3,13 +3,11 @@ const validateEventTitle = (uName) =>
 
 module.exports = (knex, User) => {
   return (params) => {
-
     console.log("paramssssss >>>>>>", params.begin_time);
 
     if (!validateEventTitle(params.title)) {
       return Promise.reject(new Error("Username must be provided"));
-    };
-
+    }
 
     return knex("events")
       .insert({

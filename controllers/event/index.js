@@ -31,6 +31,12 @@ module.exports = (models) => {
       });
   };
 
+  const deleteEvent = (req, res) => {
+    console.log("req.body.id", req.body.id);
+    console.log("req.params.id", req.params.id);
+    return models.events.delete(req.body.id);
+  };
+
   const listEvents = (req, res) =>
     models.users
       .list()
@@ -44,6 +50,7 @@ module.exports = (models) => {
   const router = express.Router();
   router.post("/", createEvent);
   router.get("/", listEvents);
+  router.delete("/:id", deleteEvent);
 
   return router;
 };

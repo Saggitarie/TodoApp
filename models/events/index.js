@@ -30,5 +30,6 @@ Event.prototype.serialize = function () {
 module.exports = (knex) => {
   return {
     create: require("./create")(knex, Event),
+    delete: require("./delete")(knex, Event),
   };
 };
