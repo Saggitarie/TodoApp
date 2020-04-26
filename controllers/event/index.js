@@ -4,22 +4,25 @@ module.exports = (models) => {
   /**
    * Controller Logic
    */
-  const createUser = (req, res) => {
-    console.log("About to create user");
+  const createEvent = (req, res) => {
+    console.log("About to add event");
     console.log(req.body.user_name);
 
-    return models.users
+    return models.events
       .create({
         user_name: req.body.user_name,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        password: req.body.password,
-        email: req.body.email,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
+        begin_time: req.body.begin_time,
+        end_time: req.body.end_time,
+        location: req.body.location,
+        description: req.body.description,
+        user_event_id: req.body.user_event_id,
       })
-      .then((user) => res.status(201).json(user.serialize()))
+      .then((event) => res.status(201).json(event.serialize()))
       .catch((err) => {
         if (err.message === "That username already exists") {
-          return models.users
+          return models.events
             .get({ username: req.body.username })
             .then((user) => res.status(200).json(user.serialize()));
         }
@@ -28,7 +31,7 @@ module.exports = (models) => {
       });
   };
 
-  const listUsers = (req, res) =>
+  const listEvents = (req, res) =>
     models.users
       .list()
       .then((users) => users.map((user) => user.serialize()))
@@ -39,8 +42,8 @@ module.exports = (models) => {
    * Routes
    */
   const router = express.Router();
-  router.post("/", createUser);
-  router.get("/", listUsers);
+  router.post("/", createEvent);
+  router.get("/", listEvents);
 
   return router;
 };

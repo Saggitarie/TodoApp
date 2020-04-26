@@ -54,7 +54,7 @@ describe("users", () => {
           };
         });
 
-        afterEach(() => knex("users").del()); // delete all users after each spec
+        // afterEach(() => knex("users").del()); // delete all users after each spec
 
         it("creates a user", () =>
           models.users.create(params).then((user) => {
@@ -78,7 +78,31 @@ describe("users", () => {
     });
   });
 
-  describe("#event", () => {
+  describe.only("#event", () => {
+    let params = {};
+    before(() => {
+      params = {
+        title: "Eat Dinner",
+        start_date: "2020-04-27",
+        end_date: "2020-04-27",
+        begin_time: "18:30",
+        end_time: "19:30",
+        location: "home",
+        description: "Going to eat pizza today!!!",
+        user_event_id: 83,
+      };
+    });
 
-  })
+    it("should be able to add new events", () => {
+      models.events.create(params).then((event) => {
+        expect(event).to.include({ title: params.title });
+        expect(event).to.include({ start_date: params.start_date });
+        expect(event).to.include({ end_date: params.end_date });
+        expect(event).to.include({ begin_time: params.begin_time });
+        expect(event).to.include({ end_time: params.end_time });
+        expect(event).to.include({ location: params.location });
+        expect(event).to.include({ description: params.description });
+      })
+    });
+  });
 });
